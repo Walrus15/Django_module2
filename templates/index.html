@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+  {% if user_authenticated %}
+	<div style="margin: 10 10 10 10">
+      <a href="{% url 'logout' %}">Logout</a>
+  	</div>
+
+	<div>
+      {{ request.user.bank }}
+	</div>
+  {% endif %}
+
+ <br>
+
+{% if user_admin %}
+<div style="margin: 10 10 10 10">
+	<a href="{% url 'create_product' %}">Create Product</a>
+</div>
+{% endif %}
+
+ {% for product in product_list %}
+  <div class="main-container">
+	  <div class="poster-container">
+		  <a href="#"><img src=" media/cat.jpg " class="poster" /></a>
+	  </div>
+	  <div class="ticket-container">
+		  <div class="ticket-content">
+			  <h4 class="ticket-title">{{ product.title }}</h4>
+			  <p class="ticket-slogan">
+				  {{ product.description }}
+			  </p>
+			  <p class="ticket-current">${{ product.price }}</p>
+			  {% if user_admin %}
+			  <a href="{% url 'update_p' pk=product.id %}" class="ticket-buy">Update</a>
+			  {% endif %}
+			  {% if user_authenticated %}
+			  <a href="{% url 'purchase' pk=product.id %}" class="ticket-buy">Buy now</a>
+			  {% endif %}
+
+		  </div>
+	  </div>
+  </div>
+ {% endfor %}
+
+{% endblock %}
+

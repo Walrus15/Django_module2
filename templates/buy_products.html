@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<h1>Список покупок {{ request.user }}</h1>
+
+{% for purchase in purchase_list %}
+  <div class="main-container">
+	  <div class="poster-container">
+		  <a href="#"><img src=" media/cat.jpg " class="poster" /></a>
+	  </div>
+	  <div class="ticket-container">
+		  <div class="ticket-content">
+			  <h4 class="ticket-title">{{ purchase.product.title }}</h4>
+			  <p class="ticket-slogan">
+				  {{ purchase.product.description }}
+			  </p>
+			  <p class="ticket-current">Кол-во = {{ purchase.quantily }}</p>
+              <p class="ticket-current">Время = {{ purchase.time_purchase }}</p>
+		  </div>
+	  </div>
+  </div>
+{% empty %}
+    <li>У вас нет покупок</li>
+ {% endfor %}
+
+{% endblock %}

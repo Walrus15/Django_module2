@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css\style.css' %}">
+    <title>Site</title>
+</head>
+<body>
+
+  <div class="div-menu">
+    <div class="menu">
+      <a href="/" class="a">Home</a>
+      <a href="#" class="a">About</a>
+      <a href="#" class="a">Blog</a>
+      <a href="{% url 'login' %} " class="a">Login</a>
+        {% if user_authenticated %}
+          <a href="{% url 'purchases_list' %} " class="a">Корзина</a>
+        {% endif %}
+
+      <div class="animation start-home"></div>
+    </div>
+  </div>
+
+
+<div class="content">
+{% block content %}
+{% endblock %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<span>Already has account? <a href="{% url 'login' %}">Login</a></span>
+<h1>Регистрация</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Register">
+</form>
+{% endblock %}
